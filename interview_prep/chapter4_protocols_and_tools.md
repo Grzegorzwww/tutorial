@@ -208,6 +208,9 @@ zawiesza się przy otwieraniu portu szeregowego?**
 (tu wpisz swoje odpowiedzi)
 ```
 
+ad1. QoS 1 - zapewnia że komunikat doszedł, jeśli nadwaca niedostał potwierdzenia, wysyłany jest koeljny, odbiorca musi implementować taki dostanie kilku takich samych komunikatów vs QoS 2 - to 4 etapowy handshake, ma duże narzuty, ale na 100% komunikat doszedł. 
+ad2. Pompa ciepła nadawała dane
+
 ---
 
 **Następny rozdział:** [Chapter 5 – Zadania praktyczne](chapter5_practical_tasks.md)

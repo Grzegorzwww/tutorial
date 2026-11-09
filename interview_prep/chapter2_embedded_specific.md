@@ -178,7 +178,13 @@ pozornego podobieństwa?**
 **Notatki / odpowiedzi:**
 ```
 (tu wpisz swoje odpowiedzi)
-```
+```ad 1 Po pierwsze dlatego że w przerwaniu należy wykonywać wszystko jak najkrócej/ zwięźle, a malloc zajmuje troche czasu, dodatkowo może się nie powieść, jego czas nie jest deterministyczny. 
+
+ad2. Kompilator może przeprowadzić optymalizacje zmiennej, ponieważ stwerdzi że nie zmienia się, ponieważ tak będzie wynikało z kontekstu programu, jednak zmienna może zmieniać się w przerwaniu, w konsekwencji tego dostaniemy trydny do odnalezienia bład
+
+ad 3. Mikrokontroler ustawia wskaźnik stosu, 2 kopiuje dane na sterte z FLASHA 3. zeruje dane które nie są zainicjalizowane, 4. ustawiwa wektory przerwań
+
+ad 4. Ponieważ przerwanie timera nie działa synchronicznie z główną pętlą pracy programu, może zdarzyć się np. tak że głowna ptętla wpadnie w pętlę nieskończoną, a przerwania będą dalej wykonywane i flaha watchdoga będzie w nich kasowana, co spowoduje dalsze działanie programu, ale nie reset, tak jakby to należało zrobić. 
 
 ---
 

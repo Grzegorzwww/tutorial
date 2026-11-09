@@ -167,6 +167,15 @@ na stałe?**
 (tu wpisz swoje odpowiedzi)
 ```
 
+ad1. Proces ma stowrzoną odrębną przestrzeń adresową, robi się go za pomocą fork(), wątek ma wspódzielną przestrzeń adresową, tzn może odwoływać się do tego samego miejsca, ale wymagane jest synchronizacja. zastosował bym proces tam gdzie  np. dziala jedna aplikacja, a wątek zastosował bym tam gdzie potrzebne jest "równolegle" wykonanie dwuch czynności w ramach jednego procesu. 
+
+ad2. to proces który się zakończył, ale dalej widnieje na tablicy procesów i ma swój numer, jak zapobiec hmm system chyba go sam sprząta?
+
+ad3. Aplikacja która odczytuje dane z uart oraz je wyświetla, ma dwa procesy, jeden do odczytu danych z uarta, a drugi do wizualizacji danych, wymiana danych może odbywać się prez sokety udp. lub pamieć współdzieloną. 
+
+ad4. ponieważ architektóra jet generyczna, a za konfiguracje spzętu odpowiadają device tree, lub w przypadku zwykłego linuxa sterowniki które śą ładowane do jądra, 
+
+
 ---
 
 **Następny rozdział:** [Chapter 4 – Protokoły komunikacyjne i narzędzia](chapter4_protocols_and_tools.md)

@@ -199,10 +199,120 @@ tylko do debugowania – dużo kosztuje i wyłącza przerwania na czas działani
 4. Zaimplementuj klasę C++ `Led` z metodą `start()` tworzącą własne
    zadanie (trampolina), mrugającą z zadanym okresem.
 
-**Notatki / odpowiedzi:**
+.  
 ```
 (tu wpisz swoje wyniki)
 ```
+ad 1. 
+
+class ZadanieTask(){
+
+
+public:
+ bool start() {xTaskCreate(&ZadanieTask::trampolina, "zadanie", 256, this, &handle) == pdPASS}
+
+private:
+
+static void trampolina(void *self);
+void run();
+
+ TaskHandle_t handle = nullptr;
+}
+
+void ZadanieTask::trampolina(void *self){
+    static_cast<ZadanieTask>(self)->run();
+}
+
+void ZadanieTask::run(){
+    TickType_t last = xTaskGetTickCount();
+    uint32_t rand_time = rand() % 20;
+    while(1){
+
+        vTaskDelay(pdMS_TO_TICKS(rand_time))
+        vTaskDelayUntil(&last, pdMS_TO_TICKS(50));
+    }
+}
+
+
+AD2.
+typedef  struct Led_t {
+    uint32 gpio;
+    uint32 port;
+}
+
+Led_t led1 {12, PORTA};
+Led_t led2 {10, PORTB};
+
+void vBlinkTask(void *data){
+    Led_t led = static_cast<Led_t>()data;
+    toogle_led(led);
+}
+
+TaskHandle_t handle1 
+if(xTaskCreate(vBlinkTask, "blik1", 256, &led1, &handle1) == pdPASS)
+{
+    printf("OK\n");
+}
+
+
+TaskHandle_t handle2
+if(xTaskCreate(vBlinkTask, "blik2", 256, &led2, &handle2) == pdPASS)
+{
+    printf("OK\n");
+}
+
+Ad3. //nie mam teraz platformy. ale wyglądało by to mniej więcej tak:
+
+void Task(void *parameters)
+{
+    float x = 3.14f;
+    UBaseType_t words = null;
+
+    while(1){
+
+        printf("%f", x)
+
+         words = uxTaskGetStackHighWaterMark
+        printf("free words in this task = %d\n", words);
+
+    }
+}
+
+
+Ad4. 
+
+consexpr uint32_t DEFAUT_BLINK_CYCLE = 100;
+class Led
+{
+    public:
+    bool start() {xCrateTask(&Led::trampolina, "blink", 256, this, &handle );}
+    private:
+
+    static trampolina(void *self) {static_cast<Led>(self)->run()}
+    void run();
+
+
+    std::optional<uint32_t> period = nullopt;
+
+    TaskHandle_t handle = nullptr;
+
+};
+
+void Led::run()
+{
+
+
+    TickType_t last = xTaskGetTickCount();
+    while(1){
+        toolge_led()
+        if(period.has_value()){
+            vTaskDelayUntil(&last, *period);
+        }else {
+            vTaskDelayUntil(&last, DEFAUT_BLINK_CYCLE);
+        }
+        
+    }
+}
 
 ---
 

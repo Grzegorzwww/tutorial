@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++20 -Wall -Wextra -Werror
+CXXFLAGS = -std=c++2a -Wall -Wextra -Werror
 
 BUILD_DIR = build
 SRC_DIR = main.cpp
