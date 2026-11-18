@@ -44,9 +44,18 @@ struct LazyReport {
 LazyReport evaluated_calls() {
     std::vector<int> v{1, 2, 3, 4, 5};
     int calls = 0;
+
+    auto views =  v | std::views::transform([&calls](int e){ ++calls; return e * 2; });
+
+    int after = calls;
+    [[maybe_unused]] int first = *views.begin();
+
+    return {after, calls};
+
+
     // TODO: zbuduj potok `v | std::views::transform(...)`, w lambdzie zwiekszaj `calls`,
     //       zapisz calls po zbudowaniu, odczytaj *view.begin(), zapisz calls ponownie.
-    return {-1, -1};
+    //return {-1, -1};
 }
 
 int main() {
